@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LogInteract {
+public class LogInteract implements Serializable {
 
     private final static String pathFile = "log.csv";
 
