@@ -1,7 +1,6 @@
 package serveur.log;
 
-import client.ObjetClient;
-import serveur.IServeur;
+import client.IClient;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -10,30 +9,37 @@ import java.util.Objects;
 
 public class LogService extends UnicastRemoteObject implements ILogService {
 
-    protected LogService(int port) throws RemoteException {
+    public LogService(int port) throws RemoteException {
         super(port);
     }
 
-    public synchronized void doLog(ObjetClient client){
-        Compte compte = new Compte();
+    public synchronized void doLog(IClient client) throws RemoteException {
         boolean valeurOK = false;
-        client.demandeServeur(compte);
+        Compte compte = client.demandeServeur();
         if(!compte.getStatus()){
+            System.out.println("---------------------  "+compte.getLogin());
+            System.out.println("---------------------  "+compte.getPassword());
+            System.out.println("---------------------  "+compte.getStatus());
             LogInteract.writeFile(compte.toString());
+            System.out.println(" le client "+client.getNom()+" effectue sa premiere connection");
         }else{
-            List<String> valCSV = LogInteract.ReadFile();
+            List<String> valCSV = LogInteract.readFile();
             while(!valeurOK){
                 for (String s : valCSV) {
+                    System.out.println(" --------------------- "+compte.toString());
+                    System.out.println(" --------------------- "+s);
                     if(Objects.equals(s,compte.toString())){
                         client.connexionReussi();
+                        System.out.println(" le client+ "+client.getNom()+" a reussi a ce connecter");
                         valeurOK = true;
                         break;
                     }
                 }
                 if(!valeurOK){
-                    client.demandeConnectionError(compte);
+                    compte = client.demandeConnectionError(compte);
                 }
             }
         }
+        System.out.println("par la test");
     }
 }

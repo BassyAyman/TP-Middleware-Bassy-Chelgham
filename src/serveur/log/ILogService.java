@@ -1,5 +1,6 @@
 package serveur.log;
 
+import client.IClient;
 import client.ObjetClient;
 
 import java.rmi.Remote;
@@ -7,5 +8,5 @@ import java.rmi.RemoteException;
 
 public interface ILogService extends Remote {
 
-    void doLog(ObjetClient client) throws RemoteException;
+    void doLog(IClient client) throws RemoteException;
 }

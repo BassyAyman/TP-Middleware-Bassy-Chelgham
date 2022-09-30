@@ -11,11 +11,18 @@ import java.util.Scanner;
 
 public class ObjetClient extends UnicastRemoteObject implements IClient {
 
-    protected ObjetClient(int port) throws RemoteException {
+    private final String nom;
+
+    protected ObjetClient(int port, String nom) throws RemoteException {
         super(port);
+        this.nom = nom;
     }
 
-    public void demandeConnectionError(Compte compte){
+    public String getNom() {
+        return this.nom;
+    }
+
+    public Compte demandeConnectionError(Compte compte){
         Scanner myObj = new Scanner(System.in);
         System.out.println(" le login ou mots de passe sont incorrect, veuillez recommencer");
         System.out.println( " Login : ");
@@ -24,6 +31,7 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
         String mdp = myObj.nextLine();
         compte.setLogin(log);
         compte.setPassword(mdp);
+        return compte;
     }
 
     public void connexionReussi(){
@@ -33,7 +41,8 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
         System.out.println(" ----------------- ");
     }
 
-    public void demandeServeur(Compte compte){
+    public Compte demandeServeur(){
+        Compte compte = new Compte();
         System.out.println(" bienvenu sur notre service de streaming , avez-vous deja un compte chez nous ? (O/N): ");
         Scanner myObj = new Scanner(System.in);
         String reponse = myObj.nextLine().toUpperCase(Locale.ROOT);
@@ -66,6 +75,10 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
             }
             compte.setLogin(log);
             compte.setPassword(mdp);
+            System.out.println("---------------------  "+compte.getLogin());
+            System.out.println("---------------------  "+compte.getPassword());
+            System.out.println("---------------------  "+compte.getStatus());
         }
+        return compte;
     }
 }

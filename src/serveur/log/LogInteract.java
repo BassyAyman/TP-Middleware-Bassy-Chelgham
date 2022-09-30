@@ -6,13 +6,16 @@ import java.util.List;
 
 public class LogInteract implements Serializable {
 
-    private final static String pathFile = "log.csv";
+    private final static File file = new File("log.csv");
 
-    public static List<String> ReadFile(){
+    private static final String DELIMITER = ",";
+    private static final String SEPARATOR = "\n";
+
+    public static List<String> readFile(){
         String line;
         List<String> tabLog = new ArrayList<>();
         try{
-            BufferedReader br = new BufferedReader(new FileReader(pathFile));
+            BufferedReader br = new BufferedReader(new FileReader(file));
             while ((line = br.readLine())!=null){
                 tabLog.add(line);
             }
@@ -28,7 +31,7 @@ public class LogInteract implements Serializable {
 
     public static void writeFile(String val){
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter(pathFile));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file,true));
             bw.write(val+"\n");
             bw.close();
         } catch (IOException e) {
