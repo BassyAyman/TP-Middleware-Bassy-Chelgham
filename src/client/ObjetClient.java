@@ -34,11 +34,24 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
         return compte;
     }
 
+    public Compte demandeConnectionNormal(Compte compte){
+        Scanner myObj = new Scanner(System.in);
+        System.out.println(" veillez rentré votre nouveau login");
+        System.out.println( " Login : ");
+        String log = myObj.nextLine();
+        System.out.println( " Mots de Passe : ");
+        String mdp = myObj.nextLine();
+        compte.setLogin(log);
+        compte.setPassword(mdp);
+        return compte;
+    }
+
     public void connexionReussi(){
         System.out.println(" connexion reussi");
         System.out.println(" ----------------- ");
         System.out.println(" ----------------- ");
         System.out.println(" ----------------- ");
+        System.out.println();
     }
 
     public Compte demandeServeur(){
@@ -75,9 +88,9 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
             }
             compte.setLogin(log);
             compte.setPassword(mdp);
-            System.out.println("---------------------  "+compte.getLogin());
+            /*System.out.println("---------------------  "+compte.getLogin());
             System.out.println("---------------------  "+compte.getPassword());
-            System.out.println("---------------------  "+compte.getStatus());
+            System.out.println("---------------------  "+compte.getStatus()); sert pour les tests valeur de compte */
         }
         return compte;
     }

@@ -17,27 +17,29 @@ public class LogService extends UnicastRemoteObject implements ILogService {
         boolean valeurOK = false;
         Compte compte = client.demandeServeur();
         if(!compte.getStatus()){
-            System.out.println("---------------------  "+compte.getLogin());
+            /*System.out.println("---------------------  "+compte.getLogin());
             System.out.println("---------------------  "+compte.getPassword());
-            System.out.println("---------------------  "+compte.getStatus());
+            System.out.println("---------------------  "+compte.getStatus()); test compte*/
             LogInteract.writeFile(compte.toString());
             System.out.println(" le client "+client.getNom()+" effectue sa premiere connection");
-        }else{
-            List<String> valCSV = LogInteract.readFile();
-            while(!valeurOK){
-                for (String s : valCSV) {
-                    System.out.println(" --------------------- "+compte.toString());
-                    System.out.println(" --------------------- "+s);
-                    if(Objects.equals(s,compte.toString())){
-                        client.connexionReussi();
-                        System.out.println(" le client+ "+client.getNom()+" a reussi a ce connecter");
-                        valeurOK = true;
-                        break;
-                    }
+        }
+        if(!compte.getStatus()){
+            compte = client.demandeConnectionNormal(compte);
+        }
+        List<String> valCSV = LogInteract.readFile();
+        while(!valeurOK){
+            for (String s : valCSV) {
+                /*System.out.println(" --------------------- "+compte.toString());
+                System.out.println(" --------------------- "+s); test */
+                if(Objects.equals(s,compte.toString())){
+                    client.connexionReussi();
+                    System.out.println(" le client+ "+client.getNom()+" a reussi a ce connecter");
+                    valeurOK = true;
+                    break;
                 }
-                if(!valeurOK){
-                    compte = client.demandeConnectionError(compte);
-                }
+            }
+            if(!valeurOK){
+                compte = client.demandeConnectionError(compte);
             }
         }
         System.out.println("par la test");

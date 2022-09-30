@@ -4,6 +4,7 @@ import serveur.log.Compte;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.Scanner;
 
 public interface IClient extends Remote {
 
@@ -14,4 +15,7 @@ public interface IClient extends Remote {
     void connexionReussi() throws RemoteException;
 
     Compte demandeServeur() throws RemoteException;
+
+    Compte demandeConnectionNormal(Compte compte) throws RemoteException;
+
 }

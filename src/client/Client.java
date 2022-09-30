@@ -24,6 +24,11 @@ public class Client {
 
             serviceLog.doLog(c1);
 
+            System.out.println("-------------------------------");
+            System.out.println("--          Gratflix         --");
+            System.out.println("--       streaming de fou    --");
+            System.out.println("-------------------------------");
+
         }catch (RemoteException e){
             e.printStackTrace();
         }
