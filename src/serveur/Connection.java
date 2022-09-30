@@ -6,7 +6,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
-public class Serveur {
+public class Connection {
 
     public static void main(String[] args) throws RemoteException, MalformedURLException {
 
