@@ -2,11 +2,12 @@ package serveur.log;
 
 import client.IClient;
 import client.ObjetClient;
+import serveur.videoservice.IVODService;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface ILogService extends Remote {
 
-    void doLog(IClient client) throws RemoteException;
+    IVODService doLog(IClient client) throws RemoteException;
 }

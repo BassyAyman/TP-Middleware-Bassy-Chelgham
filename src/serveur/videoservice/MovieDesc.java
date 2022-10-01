@@ -1,10 +1,35 @@
 package serveur.videoservice;
 
-public class MovieDesc {
+import java.io.Serializable;
 
-    private String movieName;
+public class MovieDesc implements Serializable {
 
-    private String isbn;
+    private final String movieName;
 
-    private String synopsis;
+    private final String isbn;
+
+    private final String synopsis;
+
+    public MovieDesc(String movieName, String isbn, String synopsis) {
+        this.movieName = movieName;
+        this.isbn = isbn;
+        this.synopsis = synopsis;
+    }
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    @Override
+    public String toString() {
+        return "film: " + movieName + " | synopsis: " + synopsis;
+    }
 }

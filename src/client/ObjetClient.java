@@ -4,12 +4,9 @@ import serveur.log.Compte;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
-public class ObjetClient extends UnicastRemoteObject implements IClient {
+public class ObjetClient extends UnicastRemoteObject implements IClient, IClientBox {
 
     private final String nom;
 
@@ -93,5 +90,10 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
             System.out.println("---------------------  "+compte.getStatus()); sert pour les tests valeur de compte */
         }
         return compte;
+    }
+
+    @Override
+    public void stream(byte[] chunck) throws RemoteException {
+        System.out.println(new String(Base64.getEncoder().encode(chunck)));
     }
 }

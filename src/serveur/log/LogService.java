@@ -1,6 +1,9 @@
 package serveur.log;
 
 import client.IClient;
+import serveur.ObjetServeur;
+import serveur.videoservice.IVODService;
+import serveur.videoservice.VODService;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -9,11 +12,14 @@ import java.util.Objects;
 
 public class LogService extends UnicastRemoteObject implements ILogService {
 
-    public LogService(int port) throws RemoteException {
+    private final ObjetServeur objetServeur;
+
+    public LogService(int port, ObjetServeur objetServeur) throws RemoteException {
         super(port);
+        this.objetServeur = objetServeur;
     }
 
-    public synchronized void doLog(IClient client) throws RemoteException {
+    public synchronized IVODService doLog(IClient client) throws RemoteException {
         boolean valeurOK = false;
         Compte compte = client.demandeServeur();
         if(!compte.getStatus()){
@@ -43,5 +49,6 @@ public class LogService extends UnicastRemoteObject implements ILogService {
             }
         }
         System.out.println("par la test");
+        return objetServeur.getVodService();
     }
 }
