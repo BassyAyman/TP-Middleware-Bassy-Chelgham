@@ -10,7 +10,7 @@ public class Connection {
 
     public static void main(String[] args) throws RemoteException, MalformedURLException {
 
-        Registry reg= LocateRegistry.createRegistry(2001);
+        Registry reg = LocateRegistry.createRegistry(2001);
         IServeur d = new ObjetServeur(10001);
         Naming.rebind("rmi://localhost:2001/MonOD",d);
 

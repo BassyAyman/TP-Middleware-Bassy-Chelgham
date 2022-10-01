@@ -24,10 +24,10 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
 
     public Compte demandeConnectionError(Compte compte){
         Scanner myObj = new Scanner(System.in);
-        System.out.println(" le login ou mots de passe sont incorrect, veuillez recommencer");
+        System.out.println(" le login ou mot de passe incorrect, veuillez recommencer");
         System.out.println( " Login : ");
         String log = myObj.nextLine();
-        System.out.println( " Mots de Passe : ");
+        System.out.println( " Mot de Passe : ");
         String mdp = myObj.nextLine();
         compte.setLogin(log);
         compte.setPassword(mdp);
@@ -36,10 +36,10 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
 
     public Compte demandeConnectionNormal(Compte compte){
         Scanner myObj = new Scanner(System.in);
-        System.out.println(" veillez rentré votre nouveau login");
+        System.out.println(" veillez rentrer votre nouveau login");
         System.out.println( " Login : ");
         String log = myObj.nextLine();
-        System.out.println( " Mots de Passe : ");
+        System.out.println( " Mot de Passe : ");
         String mdp = myObj.nextLine();
         compte.setLogin(log);
         compte.setPassword(mdp);
@@ -47,7 +47,7 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
     }
 
     public void connexionReussi(){
-        System.out.println(" connexion reussi");
+        System.out.println(" connexion reussie");
         System.out.println(" ----------------- ");
         System.out.println(" ----------------- ");
         System.out.println(" ----------------- ");
@@ -56,18 +56,18 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
 
     public Compte demandeServeur(){
         Compte compte = new Compte();
-        System.out.println(" bienvenu sur notre service de streaming , avez-vous deja un compte chez nous ? (O/N): ");
+        System.out.println(" bienvenue sur notre service de streaming , avez-vous deja un compte chez nous ? (O/N): ");
         Scanner myObj = new Scanner(System.in);
         String reponse = myObj.nextLine().toUpperCase(Locale.ROOT);
         while(!Objects.equals(reponse, "O") && !Objects.equals(reponse, "N")){
-            System.out.println(" vous etes priez de repondre par O (oui) ou N (non) : ");
+            System.out.println(" vous etes prié de repondre par O (oui) ou N (non) : ");
             reponse = myObj.nextLine();
         }
         if(Objects.equals(reponse,"O")){
             compte.setStatus(true);
             System.out.println( " Login : ");
             String log = myObj.nextLine();
-            System.out.println( " Mots de Passe : ");
+            System.out.println( " Mot de Passe : ");
             String mdp = myObj.nextLine();
             compte.setLogin(log);
             compte.setPassword(mdp);
@@ -75,15 +75,15 @@ public class ObjetClient extends UnicastRemoteObject implements IClient {
             compte.setStatus(false);
             System.out.println( " votre nouveau Login : ");
             String log = myObj.nextLine();
-            System.out.println( " votre nouveau Mots de Passe : ");
+            System.out.println( " votre nouveau Mot de Passe : ");
             String mdp = myObj.nextLine();
-            System.out.print("SVP, veuillez confirmez votre Mots de Passe : ");
+            System.out.print("SVP, veuillez confirmer votre Mot de Passe : ");
             String confirm = myObj.nextLine();
             while (!mdp.equals(confirm)) {
                 System.out.println("MDP invalide !");
-                System.out.print( "reentrez votre nouveau Mots de Passe :  ");
+                System.out.print( "rentrez votre nouveau Mot de Passe :  ");
                 mdp = myObj.nextLine();
-                System.out.print("SVP, veuillez confirmez votre Mots de Passe : ");
+                System.out.print("SVP, veuillez confirmer votre Mot de Passe : ");
                 confirm = myObj.nextLine();
             }
             compte.setLogin(log);
