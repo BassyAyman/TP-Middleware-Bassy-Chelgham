@@ -33,7 +33,7 @@ public class ObjetClient extends UnicastRemoteObject implements IClient, IClient
 
     public Compte demandeConnectionNormal(Compte compte){
         Scanner myObj = new Scanner(System.in);
-        System.out.println(" veillez rentrer votre nouveau login");
+        System.out.println(" veillez rentrer votre nouveau login : ");
         System.out.println( " Login : ");
         String log = myObj.nextLine();
         System.out.println( " Mot de Passe : ");

@@ -1,5 +1,7 @@
 package client;
 
+import exception.InvalidCredentialException;
+import exception.SignInFailedException;
 import serveur.Bill;
 import serveur.IServeur;
 import serveur.log.ILogService;
@@ -17,7 +19,7 @@ import java.util.Scanner;
 
 public class Client {
 
-    public static void main(String[] args) throws RemoteException, MalformedURLException, NotBoundException {
+    public static void main(String[] args) throws RemoteException, MalformedURLException, NotBoundException, SignInFailedException, InvalidCredentialException {
         Registry r = LocateRegistry.getRegistry("localhost", 2001);
         IServeur d = (IServeur) Naming.lookup("rmi://localhost:2001/MonOD");
 
