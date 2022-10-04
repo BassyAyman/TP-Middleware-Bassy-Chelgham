@@ -4,6 +4,7 @@
 Description succinte du projet : 
 
 Partie Serveur:
+  - Notre objet serveur à la responsabilité de gérer les services
   - Pour gérer la "connexion" de l'utilisateur nous avons implementé "LogService" qui s'occupe de renvoyer le stub de VODservice au client si il est bien reconnu
   - On a pas gardé un tableau de client dans notre service de log car on n'en a pas eu besoin
   - On utilise un fichier CSV pour stocker les informations "log,mots_de_passe"
