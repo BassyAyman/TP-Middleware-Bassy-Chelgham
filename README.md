@@ -18,4 +18,3 @@ Ce que nous avons pas implémenté:
   - Lancement d'un trailer pour un MovieDescExtended
   
 
-Merci.
