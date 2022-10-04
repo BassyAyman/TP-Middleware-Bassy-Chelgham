@@ -1,11 +1,11 @@
 # TP-Middleware-Bassy-Chelgham
  
-Dans le cadre de notre projet : 
 
-- pour l'ecriture dans un fichier nous avons implementer un service a par, en plus du VODservice exiger, pour que cela soit plus clair dans les methodes de demande.
-  le type de fichier utiliser est le CSV afin d'avoir un aspect "log,mots_de_passe" dans le fichier. Cela nous facilite la lecture du fichier et la recuperation des       String.
+Description succinte du projet : 
 
-- les methodes appeler coté client , classe clientObjet, affiche via system.out les textes visible coté client.
+- Pour gérer la "connexion" de l'utilisateur nous avons implementé un service supplémentaire (non demandé dans le sujet) qui s'occupe de renvoyer le stub de VODservice au client si il est bien reconnu
+  
+- On utilise un fichier CSV pour stocker les informations "log,mots_de_passe"
 
-- Dans le cadre ou plusieur client se connexte en meme temps, la methode de logIn qui enclanche le processus de recuperation de l'objetVOD est mis en synchronized
-  afin de pouvoir utiliser "plusieur threads".
+- Si des clients se connectent en même temps, la methode de logIn qui enclanche le processus de recuperation de l'objetVOD est mis en synchronized
+  afin de pouvoir utiliser "plusieur threads"
